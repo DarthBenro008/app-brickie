@@ -8,5 +8,6 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
                   rm *tools*linux*.zip 
 COPY license_accepter.sh /opt/
 RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_SDK_ROOT
-COPY entrypoint.sh ./entrypoint.sh
-ENTRYPOINT ["sh","./entrypoint.sh"]
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
