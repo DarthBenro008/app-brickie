@@ -1,0 +1,7 @@
+name: "AppBrickie"
+description: "To Test and Build a Debug Android App"
+author: "hkpdev008@gmail.com"
+
+runs:
+    using: "docker"
+    image: "Dockerfile"
