@@ -2,6 +2,19 @@ name: "AppBrickie"
 description: "To Test and Build a Debug Android App"
 author: "hkpdev008@gmail.com"
 
+jobs:
+  generate-apk:
+    name: Build Debug Apk
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
+
 runs:
     using: "docker"
     image: "Dockerfile"
