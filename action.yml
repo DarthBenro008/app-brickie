@@ -5,3 +5,6 @@ author: "hkpdev008@gmail.com"
 runs:
     using: "docker"
     image: "Dockerfile"
+branding:
+  icon: "play-circle"
+  color: "gray-dark"
