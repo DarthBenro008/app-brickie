@@ -2,22 +2,21 @@ name: "AppBrickie"
 description: "To Test and Build a Debug Android App"
 author: "hkpdev008@gmail.com"
 
-jobs:
-  generate-apk:
-    name: Build Debug Apk
-    runs-on: ubuntu-18.04
+inputs:
+  chatid:
+    description: "The Place to send the App"
+    requried: true
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
+outputs:
+  result:
+    description: "Result of automated send"
 
 runs:
-    using: "docker"
-    image: "Dockerfile"
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{inputs.chatid}}
+
 branding:
   icon: "play-circle"
   color: "gray-dark"
