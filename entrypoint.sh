@@ -27,7 +27,8 @@ if [ -z "$INPUT_PACKAGENAME" ]
 then
   sendpackage 
 else
-  packageName="$INPUT_PACKAGENAME.apk"
+  rectifiedName=${INPUT_PACKAGENAME// /_}
+  packageName="$rectifiedName.apk"
   renamePackage
   sendpackage
 fi 
