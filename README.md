@@ -18,7 +18,7 @@
 
 #### What can you do with AppBrickie?
 
-- Get your APK delievred to you on telegram with just a push of commit !
+- Get your APK delivered to you on telegram with just a push of commit !
 - Automated Android APK Builds
 - Unit Tests on Android Builds
 - Forget wires , patches and building pull requests manually!
@@ -62,7 +62,7 @@ chatid: "qwerty12345"
 ```
 
 #### **Optional Settings :** 
-You can rename the app file name , by default its set to app-debug.apk , but to change that add an input of packagename: "< YOUR APP NAME >"
+You can rename the app file name , by default its set to app-debug.apk , but to change that , add an input of packagename: "< YOUR APP NAME >"
 
 Eg: 
 ```yaml
@@ -70,7 +70,7 @@ chatid: "qwerty12345"
 packagename: "myapp"
 ```
 
-**Step 4:** Sit back and enjoy :D get your build delivered to telegram automatically on pull requests and commits on master branch!
+**Step 4:** Sit back and enjoy :D , get your build delivered to you on telegram automatically when a pull request or commit is created on master branch!
 
 ## Upcoming Features
 
@@ -89,11 +89,11 @@ You automatically agree to accept the default android-sdk license by using this 
 
 Give a ⭐ if this project made your life easy !
 
-Spread the word!
+Spread the word to your App Developer fellows to make thier life easier too !
 
 ## Contributions
 
-- Feel Free to Open a PR/Issue for any feature or bug
+- Feel Free to Open a PR/Issue for any feature or bug(s)
 - Make sure you follow the community guidelines !
 - Feel free to open an issue to ask a question/discuss anything about AppBrickie
 - Have a feature request? Open an Issue!
