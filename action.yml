@@ -9,6 +9,10 @@ inputs:
   packagename:
     description: "Name of your app"
     requried: false
+  type:
+    description: "The Framework that you are using to build your app"
+    requried: true
+    default: "native"
 
 outputs:
   result:

@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-RUN apt-get install curl
+RUN apt-get install curl unzip
 ARG ANDROID_SDK_VERSION=6609375
 ENV ANDROID_SDK_ROOT /opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
@@ -11,4 +11,7 @@ COPY license_accepter.sh /opt/
 RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_SDK_ROOT 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+ADD flutter.sh /flutter.sh 
+RUN chmod +x /flutter.sh
+ENV ANDROID_HOME="${ANDROID_SDK_ROOT}"
 ENTRYPOINT ["/entrypoint.sh"]
