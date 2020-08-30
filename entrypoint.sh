@@ -45,7 +45,8 @@ nativeBuild(){
 
 flutterBuild(){
   echo "Flutter Build"
-  bash flutter.sh
+  ls 
+  bash /flutter.sh
 }
 
 errorHandler(){
