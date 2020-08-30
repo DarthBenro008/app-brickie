@@ -6,6 +6,9 @@ inputs:
   chatid:
     description: "The Place to send the App"
     requried: true
+  packagename:
+    description: "Name of your app"
+    requried: false
 
 outputs:
   result:
