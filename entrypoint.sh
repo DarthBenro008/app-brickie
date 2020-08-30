@@ -2,7 +2,7 @@
 bash ./gradlew test --stacktrace
 bash ./gradlew assembleDebug --stacktrace
 
-packageName="app.apk"
+packageName="app-debug.apk"
 
 sendpackage(){
   echo "Package Name to $packageName"
@@ -15,7 +15,7 @@ sendpackage(){
 
 renamePackage(){
   {
-    mv app/build/outputs/apk/debug/app.apk app/build/outputs/apk/debug/"$packageName"
+    mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/"$packageName"
   }||{
     echo "File Renaming Error Trying , reverting to normal name"
     packageName="app.apk"
