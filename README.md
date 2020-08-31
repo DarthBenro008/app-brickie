@@ -27,6 +27,8 @@
 
 **Step 1:** Add the following yaml file as build.yml in .github/workflows folder of your app repository
 
+
+#### **For Native Android Builds (Java/Kotlin) :**
 ```yaml
 name: CI
 
@@ -44,13 +46,46 @@ jobs:
       - uses: actions/checkout@v2
       - name: AppBrickie
         id: appBrickieBuild
-        uses: DarthBenro008/app-brickie@v1.0
+        uses: DarthBenro008/app-brickie@v2.0
         with:
+          type: "native"
           chatid: "Your Unique ID Goes here"
           packagename: "Your App Name Goes Here"
       - name: Get Automated Result
         run: echo "${{ steps.appBrickieBuild.outputs.result }}"
 ```
+
+#### **For Flutter Builds:**
+```yaml
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: App Brickie
+    steps:
+      - uses: actions/checkout@v2
+      - name: AppBrickie
+        id: appBrickieBuild
+        uses: DarthBenro008/app-brickie@v2.0
+        with:
+          type: "flutter"
+          abi: "YOUR TARGET API" #Defaults to FAT APK
+          chatid: "Your Unique ID Goes here"
+          packagename: "Your App Name Goes Here"
+      - name: Get Automated Result
+        run: echo "${{ steps.appBrickieBuild.outputs.result }}"
+```
+
+#### **Checkout the [WIKI](https://github.com/DarthBenro008/app-brickie/wiki) Page for more detailed instructions!**
+
+<br>
 
 **Step 2 :** Go To [@AppBrickieBot](https://t.me/appbrickiebot) on Telegram to generate your unique id.
 
@@ -61,12 +96,24 @@ for eg:
 chatid: "qwerty12345"
 ```
 
+**For Flutter Builds :**
+
+Specify the abi type you want to build , if you dont specify any by default it will build Fat APK.
+
+|   ABI Type  |            Code           |
+|:-----------:|:-------------------------:|
+| armeabi-v7a | ``` abi: "armabi-v7a" ``` |
+| arm64-v8a   | ``` abi: "arm64-v8a" ```  |
+| x86_64      | ``` abi: "x86_64" ```     |
+|   Default   |          FAT APK          | 
+
+<br>
+
 #### **Optional Settings :** 
 You can rename the app file name , by default its set to app-debug.apk , but to change that , add an input of packagename: "< YOUR APP NAME >"
 
 Eg: 
 ```yaml
-chatid: "qwerty12345"
 packagename: "myapp"
 ```
 
@@ -75,7 +122,7 @@ packagename: "myapp"
 ## Upcoming Features
 
 - Firebase apps build
-- Flutter Build Support
+- Custom Key Signing 
 - React Native Build Support
 
 ## Disclaimer
