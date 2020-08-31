@@ -9,6 +9,13 @@ inputs:
   packagename:
     description: "Name of your app"
     requried: false
+  type:
+    description: "The Framework that you are using to build your app"
+    requried: true
+    default: "native"
+  abi:
+    description: "Target ABI for flutter builds"
+    requried: false
 
 outputs:
   result:

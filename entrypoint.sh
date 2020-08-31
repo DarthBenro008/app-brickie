@@ -1,11 +1,17 @@
 #!/bin/bash
-bash ./gradlew test --stacktrace
-bash ./gradlew assembleDebug --stacktrace
 
+
+# Constants
 packageName="app-debug.apk"
+flutter="flutter"
+native="native"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 
+# Functions
 sendpackage(){
-  echo "Package Name to $packageName"
+  echo -e "${GREEN}Package Name is set to $packageName${NC}"
   output=$(curl --location --request POST 'http://appbrickie.herokuapp.com/api/sendPackage' \
     --form 'file=@app/build/outputs/apk/debug/'$packageName'' \
     --form 'id='$INPUT_CHATID'' \
@@ -17,18 +23,46 @@ renamePackage(){
   {
     mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/"$packageName"
   }||{
-    echo "File Renaming Error Trying , reverting to normal name"
+    echo -e "${RED}File Renaming Error, reverting to app-debug.apk name${NC}"
     packageName="app.apk"
   }
 
 }
 
-if [ -z "$INPUT_PACKAGENAME" ]
-then
-  sendpackage 
-else
-  rectifiedName=${INPUT_PACKAGENAME// /_}
-  packageName="$rectifiedName.apk"
-  renamePackage
-  sendpackage
-fi 
+nativeBuild(){
+  bash ./gradlew test --stacktrace
+  bash ./gradlew assembleDebug --stacktrace
+  if [ -z "$INPUT_PACKAGENAME" ]
+  then
+    sendpackage 
+  else
+    rectifiedName=${INPUT_PACKAGENAME// /_}
+    packageName="$rectifiedName.apk"
+    renamePackage
+    sendpackage
+  fi 
+}
+
+flutterBuild(){
+  echo "Flutter Build" 
+  bash /flutter.sh
+}
+
+errorHandler(){
+  echo -e "${RED}Error Due to : $1 ${NC}"
+  exit 1
+}
+
+# Main
+case $INPUT_TYPE in
+  $flutter )
+    flutterBuild 
+    ;;
+  $native )
+    nativeBuild
+    ;;
+  * )
+    errorHandler "Unkown Type in YAML Passed"
+    ;;
+esac
+
