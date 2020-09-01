@@ -1,4 +1,4 @@
-# Welcome to AppBrickie 👋
+![Banner](assets/banner.jpg)
 
 <p>
   <a href="https://github.com/DarthBenro008/app-brickie/blob/master/LICENSE" target="_blank">
@@ -18,14 +18,14 @@
 
 #### What can you do with AppBrickie?
 
-- Get your APK delivered to you on telegram with just a push of commit !
-- Automated Android APK Builds
-- Unit Tests on Android Builds
-- Forget wires , patches and building pull requests manually!
+- Get your APK delivered to you on telegram with just a push of commit!
+- Automated Android APK Builds.
+- Unit Tests on Android Builds.
+- Forget wires, patches and building pull requests manually!
 
 ## Installation
 
-**Step 1:** Add the following yaml file as build.yml in .github/workflows folder of your app repository
+**Step 1:** Add the following yaml file as build.yml in .github/workflows folder of your app repository.
 
 
 #### **For Native Android Builds (Java/Kotlin) :**
@@ -98,7 +98,7 @@ chatid: "qwerty12345"
 
 **For Flutter Builds :**
 
-Specify the abi type you want to build , if you dont specify any by default it will build Fat APK.
+Specify the abi type you want to build, if you dont specify any by default it will build Fat APK.
 
 |   ABI Type  |            Code           |
 |:-----------:|:-------------------------:|
@@ -110,19 +110,19 @@ Specify the abi type you want to build , if you dont specify any by default it w
 <br>
 
 #### **Optional Settings :** 
-You can rename the app file name , by default its set to app-debug.apk , but to change that , add an input of packagename: "< YOUR APP NAME >"
+You can rename the app file name, by default its set to app-debug.apk, but to change that, add an input of packagename: "< YOUR APP NAME >"
 
 Eg: 
 ```yaml
 packagename: "myapp"
 ```
 
-**Step 4:** Sit back and enjoy :D , get your build delivered to you on telegram automatically when a pull request or commit is created on master branch!
+**Step 4:** Sit back and enjoy :D, get your build delivered to you on telegram automatically when a pull request or commit is created on master branch!
 
 ## Upcoming Features
 
 - Firebase apps build
-- Custom Key Signing 
+- Custom Key Signing
 - React Native Build Support
 
 ## Disclaimer
@@ -134,15 +134,15 @@ You automatically agree to accept the default android-sdk license by using this 
 
 ## Show your support
 
-Give a ⭐ if this project made your life easy !
+Give a ⭐ if this project made your life easy!
 
-Spread the word to your App Developer fellows to make thier life easier too !
+Spread the word to your App Developer fellows to make thier life easier too!
 
 ## Contributions
 
-- Feel Free to Open a PR/Issue for any feature or bug(s)
-- Make sure you follow the community guidelines !
-- Feel free to open an issue to ask a question/discuss anything about AppBrickie
+- Feel Free to Open a PR/Issue for any feature or bug(s).
+- Make sure you follow the community guidelines!
+- Feel free to open an issue to ask a question/discuss anything about AppBrickie.
 - Have a feature request? Open an Issue!
 
 ## License
