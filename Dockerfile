@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-RUN apt-get install curl unzip
+RUN apt-get install curl unzip openssl
 ARG ANDROID_SDK_VERSION=6609375
 ENV ANDROID_SDK_ROOT /opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
