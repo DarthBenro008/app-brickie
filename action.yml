@@ -16,7 +16,21 @@ inputs:
   abi:
     description: "Target ABI for flutter builds"
     requried: false
-
+  firebase:
+    description: "Contents of your google-services.json file"
+    requried: false
+  keystore:
+    description: "The text dump you generated of your keystore"
+    requried: false
+  keystorePassword:
+    description: "Password of your keystore file"
+    requried: false
+  keyAlias:
+    description: "Key alias of your key that needs to be signed"
+    requried: false
+  keyPassword: 
+    description: "Password of the key in your keystore file"
+    requried: false
 outputs:
   result:
     description: "Result of automated send"

@@ -39,6 +39,11 @@ flutter precache
 yes "y" | flutter doctor --android-licenses
 flutter doctor -v
 flutter upgrade
+if [ -z "$INPUT_FIREBASE" ]
+then 
+  continue
+else
+  echo "$INPUT_FIREBASE" > android/app/google-services.json
 if [ -z "$INPUT_ABI" ]
 then 
   flutter build apk
