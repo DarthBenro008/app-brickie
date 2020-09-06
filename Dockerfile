@@ -8,10 +8,11 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
               unzip *tools*linux*.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
                   rm *tools*linux*.zip
 COPY license_accepter.sh /opt/
-RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_SDK_ROOT 
+RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_SDK_ROOT
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ADD flutter.sh /flutter.sh 
 RUN chmod +x /flutter.sh
 ENV ANDROID_HOME="${ANDROID_SDK_ROOT}"
+RUN chmod +x $ANDROID_HOME/*
 ENTRYPOINT ["/entrypoint.sh"]
