@@ -40,10 +40,8 @@ sendpackage(){
     ksPassword=$INPUT_KEYSTOREPASSWORD
     kAlias=$INPUT_KEYALIAS
     echo "$INPUT_KEYSTORE" | base64 --decode > key.jks
-    #cat $INPUT_KEYSTORE > key.txt
-    #openssl base64 -d -A -in key.txt -out key.jks
     {
-      bash $ANDROID_HOME/build-tools/*/zipalign -v -p 4 app/build/outputs/apk/debug/$packageName app/build/outputs/apk/debug/$packageName 
+      bash zipalign -v -p 4 app/build/outputs/apk/debug/$packageName app/build/outputs/apk/debug/$packageName 
       bash $ANDROID_HOME/build-tools/*/apksigner sign --ks key.jks --ks-key-alias $kAlias --ks-pass env:INPUT_KEYPASSWORD --out app/build/outputs/apk/debug/$packageName app/build/outputs/apk/debug/$packageName
     }||{
       errorHandler "Failed to sign apk!"
