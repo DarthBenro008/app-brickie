@@ -1,7 +1,7 @@
 FROM openjdk:8
 
 RUN apt-get update
-RUN apt-get -y install curl unzip openssl zipalign file
+RUN apt-get -y install curl unzip openssl
 ARG ANDROID_SDK_VERSION=6609375
 ENV ANDROID_SDK_ROOT /opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
@@ -16,6 +16,4 @@ ADD flutter.sh /flutter.sh
 RUN chmod +x /flutter.sh
 ENV ANDROID_HOME="${ANDROID_SDK_ROOT}"
 RUN chmod +x $ANDROID_HOME/*
-RUN dpkg --print-architecture
-RUN file /usr/bin/zipalign
 ENTRYPOINT ["/entrypoint.sh"]
