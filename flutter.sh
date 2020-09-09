@@ -33,6 +33,20 @@ sendpackage(){
         }
     }
 
+  apkSigner(){
+    echo -e "${GREEN} This app is being signed with a custom key ${NC}"
+    ksPassword=$INPUT_KEYSTOREPASSWORD
+    kAlias=$INPUT_KEYALIAS
+    echo "$INPUT_KEYSTORE" | base64 --decode > key.jks
+    {
+      $ANDROID_HOME/build-tools/*/zipalign -v -p 4 build/app/outputs/apk/release/$packageName build/app/outputs/apk/release/$packageName
+      bash $ANDROID_HOME/build-tools/*/apksigner sign --ks key.jks --ks-key-alias $kAlias --ks-pass env:INPUT_KEYPASSWORD --out build/app/outputs/apk/release/$packageName build/app/outputs/apk/release/$packageName
+    }||{
+      errorHandler "Failed to sign apk!"
+    }
+  echo -e "${GREEN} Apk signed successfully ! ${NC}"
+}
+
 # Run Flutter
 flutter config --no-analytics
 flutter precache
@@ -41,29 +55,36 @@ flutter doctor -v
 flutter upgrade
 if [ -z "$INPUT_FIREBASE" ]
 then 
-  continue
+  :
 else
   echo "$INPUT_FIREBASE" > android/app/google-services.json
-if [ -z "$INPUT_ABI" ]
+  if [ -z "$INPUT_ABI" ]
+  then 
+    flutter build apk
+  else
+    flutter build apk --split-per-abi
+    echo -e "${GREEN}ABI Target set to $INPUT_ABI-release ${NC}"
+    case $INPUT_ABI in
+      $v7a )
+        builtPackageName="app-armeabi-v7a-release.apk"
+        ;;
+      $v8a )
+        builtPackageName="app-arm64-v8a-release.apk"
+        ;;
+      $x86 )
+        builtPackageName="app-x86_64-release.apk"
+        ;;
+      * )
+        builtPackageName=$packageName
+        ;;
+    esac
+  fi
+fi 
+if [ -z "$INPUT_KEYSTORE" ]
 then 
-  flutter build apk
-else
-  flutter build apk --split-per-abi
-  echo -e "${GREEN}ABI Target set to $INPUT_ABI-release ${NC}"
-  case $INPUT_ABI in
-    $v7a )
-      builtPackageName="app-armeabi-v7a-release.apk"
-      ;;
-    $v8a )
-      builtPackageName="app-arm64-v8a-release.apk"
-      ;;
-    $x86 )
-      builtPackageName="app-x86_64-release.apk"
-      ;;
-    * )
-      builtPackageName=$packageName
-      ;;
-  esac
+  :
+else 
+  apkSigner
 fi
 
 if [ -z "$INPUT_PACKAGENAME" ]
