@@ -21,11 +21,14 @@
 - Get your APK delivered to you on telegram with just a push of commit!
 - Automated Android APK Builds.
 - Unit Tests on Android Builds.
+- Supports Firebase based apps and signed builds with your custom key!
 - Forget wires, patches and building pull requests manually!
 
 ## Installation
 
 **Step 1:** Add the following yaml file as build.yml in .github/workflows folder of your app repository.
+
+**Note:** _If your project uses any services of firebase, please refer to the [WIKI](https://github.com/DarthBenro008/app-brickie/wiki) for instructions. The below instructions are only for **vanilla builds.**_
 
 
 #### **For Native Android Builds (Java/Kotlin) :**
@@ -121,8 +124,9 @@ packagename: "myapp"
 
 ## Upcoming Features
 
-- Firebase apps build
-- Custom Key Signing
+- ~~Firebase apps build~~ (v3.0 supports Firebase Builds!)
+- ~~Custom Key Signing~~ (v3.0 supports custom key signing support!)
+- Slack integration
 - React Native Build Support
 
 ## Disclaimer
