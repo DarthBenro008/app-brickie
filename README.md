@@ -21,8 +21,9 @@
 - Get your APK delivered to you on telegram with just a push of commit!
 - Automated Android APK Builds.
 - Unit Tests on Android Builds.
-- Supports Firebase based apps and signed builds with your custom key!
+- Supports **Firebase based apps** and **signed builds** with your custom key!
 - Forget wires, patches and building pull requests manually!
+- Slack support coming soon! (star and watch the project to stay updated !)
 
 ## Installation
 
@@ -49,7 +50,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: AppBrickie
         id: appBrickieBuild
-        uses: DarthBenro008/app-brickie@v2.0
+        uses: DarthBenro008/app-brickie@v3.0
         with:
           type: "native"
           chatid: "Your Unique ID Goes here"
@@ -76,7 +77,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: AppBrickie
         id: appBrickieBuild
-        uses: DarthBenro008/app-brickie@v2.0
+        uses: DarthBenro008/app-brickie@v3.0
         with:
           type: "flutter"
           abi: "YOUR TARGET API" #Defaults to FAT APK
@@ -112,22 +113,38 @@ Specify the abi type you want to build, if you dont specify any by default it wi
 
 <br>
 
-#### **Optional Settings :** 
-You can rename the app file name, by default its set to app-debug.apk, but to change that, add an input of packagename: "< YOUR APP NAME >"
+**Step 4:** Sit back and enjoy :D, get your build delivered to you on telegram automatically when a pull request or commit is created on master branch!
+
+
+### **Optional Settings :** 
+**1. Custom Name -** You can rename the app file name, by default its set to app-debug.apk, but to change that, add an input of packagename: "< YOUR APP NAME >"
 
 Eg: 
 ```yaml
 packagename: "myapp"
 ```
 
-**Step 4:** Sit back and enjoy :D, get your build delivered to you on telegram automatically when a pull request or commit is created on master branch!
+**2. Custom Key Sign -** You can sign the app build by AppBrickie with your own keystore! Check the instreuctions mentions [here](https://github.com/DarthBenro008/app-brickie/wiki/Firebase-and-Custom-Key-Signing#generating-secrets-to-enable-custom-key-signing-in-the-build) to learn how to generate the secrets for a successful key sign build.
+
+Eg:
+```yaml
+keystore: ${{ secrets.KEYSTORE }}
+keystorePassword: ${{ secrets.KEYSTORE_PASS }}
+keyAlias: ${{ secrets.KEY_ALIAS }}
+keyPassword: ${{ secrets.KEYSTORE_PASS }}
+```
+
+**3. Firebase -** If your app uses any of the firebase services, copy the contents of google-service.json file and paste it in a secret and pass it in the input param as shown below. [Check here for an example](https://github.com/DarthBenro008/app-brickie/wiki/Firebase-and-Custom-Key-Signing#firebase)
+
+```yaml
+firebase: ${{ secrets.FIREBASE }}
+```
 
 ## Upcoming Features
 
-- ~~Firebase apps build~~ (v3.0 supports Firebase Builds!)
-- ~~Custom Key Signing~~ (v3.0 supports custom key signing support!)
 - Slack integration
-- React Native Build Support
+
+Note: v3.0 now supports firebase and custom build signing, refer changelog.
 
 ## Disclaimer
 You automatically agree to accept the default android-sdk license by using this github action. For more info refer [Android SDK T&C](https://developer.android.com/studio/terms)
