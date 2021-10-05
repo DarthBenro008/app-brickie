@@ -1,8 +1,8 @@
-FROM openjdk:8
+FROM openjdk:11
 
 RUN apt-get update
 RUN apt-get -y install curl unzip openssl
-ARG ANDROID_SDK_VERSION=6609375
+ARG ANDROID_SDK_VERSION=7583922
 ENV ANDROID_SDK_ROOT /opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
           wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
